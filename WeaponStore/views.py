@@ -4,4 +4,4 @@ from .models import Item
 
 def Index(request):
     items = Item.objects.all()
-    return render(request,'base.html',{'items': items})
+    return render(request,'WeaponStore/index.html',{'items': items})

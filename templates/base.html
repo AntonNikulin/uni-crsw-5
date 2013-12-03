@@ -11,17 +11,10 @@
         <!--[if lt IE 9]>
           <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
         <![endif]-->
-    <title>Main page</title>
+    <title>{% block title %}Smile{% endblock %}</title>
 </head>
 <body>
-<h1>Main Page</h1>
-{% for item in items %}
-    <article class="item">
-        <dl>
-            <dt>Name: </dt><dd>{{ item.name }}</dd>
-            <dt>Description: </dt><dd>{{ item.desc }}</dd>
-        </dl>
-    </article>
-{% endfor %}
+{% block content %}
+{% endblock %}
 </body>
 </html>
