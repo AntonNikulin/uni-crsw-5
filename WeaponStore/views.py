@@ -19,3 +19,11 @@ def createWeapon(request):
     else:
         form = WeaponForm()
         return render(request, 'WeaponStore/WeaponForm.html', {'form': form})
+
+def editWeapon(request, id):
+    object = get_object_or_404(Weapon, pk=id)
+    form = WeaponForm(instance=object)
+    return render(request, 'WeaponStore/WeaponForm.html', {'form': form})
+
+def deleteWeapon(request, id):
+    pass
