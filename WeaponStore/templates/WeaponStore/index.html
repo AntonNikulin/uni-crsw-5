@@ -1,11 +1,15 @@
 {% extends "base.html" %}
 {% block content %}
 {% for item in items %}
-    <article class="item">
-        <dl>
-            <dt>Name: </dt><dd>{{ item.name }}</dd>
-            <dt>Description: </dt><dd>{{ item.desc }}</dd>
-        </dl>
-    </article>
+    <div class="container-fluid">
+        <div class="row-fluid">
+            <article class="item span12">
+                <dl class="dl-horizontal">
+                    <dt>Name: </dt><dd>{{ item.name }}</dd>
+                    <dt>Description: </dt><dd>{{ item.desc }}</dd>
+                </dl>
+            </article>
+        </div>
+    </div>
 {% endfor %}
 {% endblock %}

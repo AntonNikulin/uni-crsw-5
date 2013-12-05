@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="container-fluid">
+        <form action={% url 'createWeapon' %} method="post">{% csrf_token %}
+            {{ form.as_p }}
+            <div class="form-horizontal">
+                 <a class="btn btn-small" href={% url 'index' %}>Назад</a>
+            <input class="btn btn-primary" type="submit" name="submit" value="Отправить" >
+            </div>
+        </form>
+    </div>
+{% endblock %}

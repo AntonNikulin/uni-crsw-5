@@ -1,18 +1,21 @@
 from django.shortcuts import render, get_object_or_404, HttpResponseRedirect
-from .models import Item
-from .forms import ItemForm
+from .models import Weapon
+from .forms import WeaponForm
 
 
 def Index(request):
-    items = Item.objects.all()
+    items = Weapon.objects.all()
     return render(request, 'WeaponStore/index.html', {'items': items})
 
-def createItem(request):
+
+def createWeapon(request):
     if request.POST:
-        form = ItemForm(request.POST)
+        form = WeaponForm(request.POST)
         if form.is_valid():
             form.save()
             return HttpResponseRedirect('/')
+        else:
+            return render(request, 'WeaponStore/WeaponForm.html', {'form': form})
     else:
-        form = ItemForm()
-        return render(request, 'WeaponStore/ItemForm.html', {'form': form})
+        form = WeaponForm()
+        return render(request, 'WeaponStore/WeaponForm.html', {'form': form})

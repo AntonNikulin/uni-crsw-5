@@ -1,7 +1,7 @@
 from django.forms import ModelForm
-from .models import Item
+from .models import Weapon
 
 
-class ItemForm(ModelForm):
+class WeaponForm(ModelForm):
     class Meta:
-        model = Item
+        model = Weapon
