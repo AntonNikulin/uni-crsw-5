@@ -1,1 +1,10 @@
-<p>Силы Альянса снова нанесли удар, страница которую вы ищете не найдена</p>
+{% extends 'base.html' %}
+{% block content %}
+         <div class="container-fluid">
+        <div class="row-fluid">
+            <h1>404</h1>
+            <p>Силы Хаоса снова нанесли удар, - страница которую вы ищете не найдена</p>
+            <img src="{% static 'img/shatter.jpg' %}">
+            </div>
+         </div>
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="container-fluid">
+        <div class="row-fluid">
+        <h2>Список оружия:</h2>
+    <table class="table table-striped table-hover">
+        <tbody>
+        {% for wp in object_list %}
+        <tr>
+            <td><a href="">{{ wp.shortName }}</a></td>
+            <td>{{ wp.country }}</td>
+            <td>{{ wp.in_Stock }}</td>
+            <td>{{ wp.source }}</td>
+            <td><a href="{% url 'weapon_edit' wp.id %}" class="btn btn-warning btn-mini">Изменить</a>
+                <a href="{% url 'weapon_delete' wp.id %}"class="btn btn-danger btn-mini">Удалить</a></td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+        </div>
+    </div>
+{% endblock content %}

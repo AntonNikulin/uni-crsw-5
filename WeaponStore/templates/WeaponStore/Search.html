@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="container-fluid">
+        <div class="row-fluid">
+            <table>
+                {% for wp in weapon %}
+                    <tr>
+                        <td><a href="/edit/{{ wp.id }}">{{ wp.shortName }}</a></td>
+                        <td>{{ wp.manufacturer.fullName }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+{% endblock %}

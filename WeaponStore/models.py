@@ -15,12 +15,13 @@ class Item(models.Model):
     in_Stock = models.IntegerField(max_length=20, blank=True, null=True)
     source = models.URLField(blank=True, null=True)
 
+    def __unicode__(self):
+            return self.shortName
+
     class Meta:
         abstract = True
         ordering = ['shortName']
 
-        def __unicode__(self):
-            return self.name
 
 
 class Weapon(Item):
@@ -38,9 +39,8 @@ class Person(models.Model):
     country = models.CharField(max_length=50, blank=True)
     phone = models.IntegerField(max_length=20, blank=True, null= True)
 
-    class Meta:
-        def __unicode__(self):
-            return self.lastName
+    def __unicode__(self):
+         return self.lastName
 
 
 class Company(models.Model):
@@ -49,9 +49,8 @@ class Company(models.Model):
     country = models.CharField(max_length=50, blank=True)
     contact = models.ForeignKey(Person, blank=True, null=True, on_delete=models.SET_NULL)
 
-    class Meta:
-        def __unicode__(self):
-            return self.shortName
+    def __unicode__(self):
+        return self.shortName
 
 class Manufacturer(Company):
     headquarters = models.CharField(max_length=50, blank=True)
