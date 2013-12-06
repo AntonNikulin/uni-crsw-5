@@ -17,7 +17,7 @@ def search(request):
 def manufacturerItemList(request, id):
     manufacturer = Manufacturer.objects.get(pk=id)
     weapons = manufacturer.weapon_set.all()
-    return (request, 'WeaponStore/weapon_list.html', {'object_list': weapons})
+    return render(request, 'WeaponStore/weapon_list.html', {'object_list': weapons})
 
 
 #   Weapon CRUD

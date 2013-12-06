@@ -2,14 +2,10 @@
 {% block content %}
     <div class="container-fluid">
         <div class="row-fluid">
-            <table class="item span12">
-                {% for wp in weapon %}
-                <tr class="dl-horizontal">
-                    <td><a href="weapon/edit/{{ wp.id }}">{{ wp.shortName }}</a></td>
-                    <td>{{ wp.manufacturer.fullName }}</td>
-                </tr>
-                {% endfor %}
-            </table>
+            <form class="form-search inner" action="/search" method="get">
+                <input class="input-large search-query" type="text" name="queryWeapon">
+                <input class="btn"type="submit" value="Искать">
+            </form>
         </div>
     </div>
 {% endblock %}

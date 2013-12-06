@@ -7,10 +7,12 @@
                 <tbody>
                 {% for man in object_list %}
                 <tr>
-                    <td><a href="">{{ man.shortName }}</a></td>
+                    <td>{{ man.shortName }}</td>
+                    <td>{{ man.fullName }}</td>
                     <td>{{ man.headquarters }}</td>
-                    <td><a href="{% url 'manufacturer_edit' man.id %}" class="btn btn-warning btn-mini">Изменить</a></td>
-                    <td><a href="{% url 'manufacturer_delete' man.id %}"class="btn btn-danger btn-mini">Удалить</a></td>
+                    <td><a href="{% url 'manufacturerItemList' man.id %}" class="btn btn-primary btn-mini">Список оружия</a>
+                        <a href="{% url 'manufacturer_edit' man.id %}" class="btn btn-warning btn-mini">Изменить</a>
+                        <a href="{% url 'manufacturer_delete' man.id %}"class="btn btn-danger btn-mini">Удалить</a></td>
                 </tr>
                 {% endfor %}
                 </tbody>
