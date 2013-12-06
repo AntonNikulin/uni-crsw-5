@@ -1,15 +1,15 @@
 {% extends "base.html" %}
 {% block content %}
-{% for item in items %}
     <div class="container-fluid">
         <div class="row-fluid">
-            <article class="item span12">
-                <dl class="dl-horizontal">
-                    <dt>Name: </dt><dd>{{ item.shortName }}</dd>
-                    <dt>Description: </dt><dd>{{ item.description }}</dd>
-                </dl>
-            </article>
+            <table class="item span12">
+                {% for wp in weapon %}
+                <tr class="dl-horizontal">
+                    <td><a href="edit/{{ wp.id }}">{{ wp.shortName }}</a></td>
+                    <td>{{ wp.manufacturer.fullName }}</td>
+                </tr>
+                {% endfor %}
+            </table>
         </div>
     </div>
-{% endfor %}
 {% endblock %}

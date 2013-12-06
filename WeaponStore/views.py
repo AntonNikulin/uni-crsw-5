@@ -1,29 +1,33 @@
 from django.shortcuts import render, get_object_or_404, HttpResponseRedirect
+from django.views.generic import TemplateView, ListView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.core.urlresolvers import reverse_lazy
 from .models import Weapon
 from .forms import WeaponForm
 
 
+
 def Index(request):
     items = Weapon.objects.all()
-    return render(request, 'WeaponStore/index.html', {'items': items})
+    return render(request, 'WeaponStore/index.html', {'weapon': items})
+
+def search(request):
+    if 'queryWeapon' in request.GET:
+        weapon = Weapon.objects.filter(shortName__contains = request.GET['queryWeapon'])
+        return render(request, 'WeaponStore/Search.html', {'weapon': weapon})
 
 
-def createWeapon(request):
-    if request.POST:
-        form = WeaponForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return HttpResponseRedirect('/')
-        else:
-            return render(request, 'WeaponStore/WeaponForm.html', {'form': form})
-    else:
-        form = WeaponForm()
-        return render(request, 'WeaponStore/WeaponForm.html', {'form': form})
+#   Weapon CRUD
+class WeaponList(ListView):
+    model=Weapon
 
-def editWeapon(request, id):
-    object = get_object_or_404(Weapon, pk=id)
-    form = WeaponForm(instance=object)
-    return render(request, 'WeaponStore/WeaponForm.html', {'form': form})
+class WeaponCreate(CreateView):
+    model=Weapon
 
-def deleteWeapon(request, id):
-    pass
+class WeaponUpdate(UpdateView):
+    model = Weapon
+
+class WeaponDelete(DeleteView):
+    model = Weapon
+
+#   Manufacturer CRUD

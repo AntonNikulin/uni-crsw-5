@@ -22,6 +22,7 @@ class Item(models.Model):
 
 class Weapon(Item):
     caliber = models.IntegerField(max_length=20, blank=True, null=True)
+    keyFeature = models.CharField(max_length=100, blank=True, null=True)
 
 
 class Misc(Item):
@@ -34,12 +35,20 @@ class Person(models.Model):
     country = models.CharField(max_length=50, blank=True)
     phone = models.IntegerField(max_length=20, blank=True, null= True)
 
+    class Meta:
+        def __unicode__(self):
+            return self.lastName
+
 
 class Company(models.Model):
     shortName = models.CharField(max_length=20, blank=True)
     fullName = models.CharField(max_length=150, blank=False)
     country = models.CharField(max_length=50, blank=True)
     contact = models.ForeignKey(Person, blank=True, null=True, on_delete=models.SET_NULL)
+
+    class Meta:
+        def __unicode__(self):
+            return self.shortName
 
 class Manufacturer(Company):
     headquarters = models.CharField(max_length=50, blank=True)
