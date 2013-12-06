@@ -1,7 +1,6 @@
 from django.shortcuts import render, get_object_or_404, HttpResponseRedirect
 from django.views.generic import TemplateView, ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from django.core.urlresolvers import reverse_lazy
 from .models import Weapon, Manufacturer
 
 
@@ -14,6 +13,11 @@ def search(request):
     if 'queryWeapon' in request.GET:
         weapon = Weapon.objects.filter(shortName__contains = request.GET['queryWeapon'])
         return render(request, 'WeaponStore/Search.html', {'weapon': weapon})
+
+def manufacturerItemList(request, id):
+    manufacturer = Manufacturer.objects.get(pk=id)
+    weapons = manufacturer.weapon_set.all()
+    return (request, 'WeaponStore/weapon_list.html', {'object_list': weapons})
 
 
 #   Weapon CRUD
