@@ -1,10 +1,14 @@
 from django.db import models
 # -*- coding: utf-8 -*-
+from time import time
 
+def getUploadFileName(instance, filename):
+    return "%s_%s" % (str(time()).replace('.','_'), str(filename))
 
 class Item(models.Model):
     fullName = models.CharField(max_length=200, blank=True)
     shortName = models.CharField(max_length=20, blank=False)
+    thumbnail = models.FileField(blank=True,null=True,upload_to=getUploadFileName)
     description = models.TextField(max_length=1000, blank=True, null=True)
     manufacturer = models.ForeignKey("Manufacturer", blank=True, null=True, on_delete=models.SET_NULL)
     country = models.CharField(max_length=50, blank=True, null=True)
