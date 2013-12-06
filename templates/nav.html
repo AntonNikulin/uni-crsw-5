@@ -6,15 +6,16 @@
             <span class="icon-bar"></span>
         </a>
         <a class="brand" href="/">Smile</a>
-        <div class="nav-collapse">
+        <div class="nav-collapse collapse">
             <ul class="nav">
                 <li class=""><a href="/createweapon/">CreateWeapon</a></li>
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        Test <span class="caret"></span>
+                        Список <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">Test Inside</a> </li>
+                        <li><a href="{% url 'weapon_list' %}">Оружия</a> </li>
+                        <li><a href="{% url 'manufacturer_list' %}">Производителей</a> </li>
                     </ul>
                 </li>
             </ul>

@@ -5,7 +5,6 @@ from django.db import models
 class Item(models.Model):
     fullName = models.CharField(max_length=200, blank=True)
     shortName = models.CharField(max_length=20, blank=False)
-    year = models.IntegerField(max_length=4, blank=True, null=True)
     description = models.TextField(max_length=1000, blank=True, null=True)
     manufacturer = models.ForeignKey("Manufacturer", blank=True, null=True, on_delete=models.SET_NULL)
     country = models.CharField(max_length=50, blank=True, null=True)

@@ -5,7 +5,7 @@
             <table class="item span12">
                 {% for wp in weapon %}
                 <tr class="dl-horizontal">
-                    <td><a href="edit/{{ wp.id }}">{{ wp.shortName }}</a></td>
+                    <td><a href="weapon/edit/{{ wp.id }}">{{ wp.shortName }}</a></td>
                     <td>{{ wp.manufacturer.fullName }}</td>
                 </tr>
                 {% endfor %}

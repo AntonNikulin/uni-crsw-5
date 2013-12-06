@@ -30,4 +30,14 @@ class WeaponDelete(DeleteView):
     model = Weapon
 
 #   Manufacturer CRUD
-class
+class ManufacturerList(ListView):
+    model = Manufacturer
+
+class ManufacturerCreate(CreateView):
+    model = Manufacturer
+
+class ManufacturerUpdate(UpdateView):
+    model = Manufacturer
+
+class ManufacturerDelete(DeleteView):
+    model = Manufacturer
