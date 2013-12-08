@@ -9,11 +9,14 @@ class Item(models.Model):
     fullName = models.CharField(max_length=200, blank=True)
     shortName = models.CharField(max_length=20, blank=False)
     thumbnail = models.FileField(blank=True,null=True,upload_to=getUploadFileName)
-    description = models.TextField(max_length=1000, blank=True, null=True)
     manufacturer = models.ForeignKey("Manufacturer", blank=True, null=True, on_delete=models.SET_NULL)
+    supplier = models.ForeignKey("Supplier", blank=True, null=True, on_delete=models.SET_NULL)
+    buyer = models.ManyToManyField("Buyer",  blank=True, null=True)
+    price = models.IntegerField(max_length=20, blank=True, null=True)
     country = models.CharField(max_length=50, blank=True, null=True)
     in_Stock = models.IntegerField(max_length=20, blank=True, null=True)
     source = models.URLField(blank=True, null=True)
+    description = models.TextField(max_length=1000, blank=True, null=True)
 
     def __unicode__(self):
             return self.shortName
@@ -32,6 +35,10 @@ class Weapon(Item):
 class Misc(Item):
     type = models.CharField(max_length=50, blank=True)
 
+class Ammo(Weapon):
+    to = models.ForeignKey(Weapon, max_length=50, blank=True, related_name="ammunition")
+    amount = models.IntegerField(max_length=20, blank=True, null=True)
+
 
 class Person(models.Model):
     firstName = models.CharField(max_length=50, blank=False)
@@ -40,7 +47,7 @@ class Person(models.Model):
     phone = models.IntegerField(max_length=20, blank=True, null= True)
 
     def __unicode__(self):
-         return self.lastName
+         return self.firstName
 
 
 class Company(models.Model):
@@ -50,12 +57,15 @@ class Company(models.Model):
     contact = models.ForeignKey(Person, blank=True, null=True, on_delete=models.SET_NULL)
 
     def __unicode__(self):
-        return self.shortName
+        return self.fullName
 
 class Manufacturer(Company):
     headquarters = models.CharField(max_length=50, blank=True)
 
 class Buyer (Company):
+    discount = models.IntegerField(max_length = 3, blank=True, null=True)
+
+class Supplier(Company):
     pass
 
 
