@@ -5,9 +5,16 @@ from time import time
 def getUploadFileName(instance, filename):
     return "%s_%s" % (str(time()).replace('.','_'), str(filename))
 
+spz = (
+        ('Ручное оружие', 'Ручное оружие'),
+        ('Боеприпасы', 'Боеприпасы'),
+        ('Ракетные комплексы', 'Ракетные комплексы'),
+        ('Оружие поддержки', 'Оружие поддержки'),
+    )
+
 class Item(models.Model):
     fullName = models.CharField(max_length=200, blank=True)
-    shortName = models.CharField(max_length=20, blank=False)
+    shortName = models.CharField(max_length=50, blank=False)
     thumbnail = models.FileField(blank=True,null=True,upload_to=getUploadFileName)
     manufacturer = models.ForeignKey("Manufacturer", blank=True, null=True, on_delete=models.SET_NULL)
     supplier = models.ForeignKey("Supplier", blank=True, null=True, on_delete=models.SET_NULL)
@@ -28,15 +35,18 @@ class Item(models.Model):
 
 
 class Weapon(Item):
-    caliber = models.IntegerField(max_length=20, blank=True, null=True)
-    keyFeature = models.CharField(max_length=100, blank=True, null=True)
+    tpe = models.CharField(max_length=30,
+                                      choices=spz,
+                                      default='Не указано',blank=True, null=True)
+    caliber = models.IntegerField(max_length=5, blank=True, null=True)
+    addtInfo = models.CharField(max_length=200, blank=True, null=True)
 
 
 class Misc(Item):
     type = models.CharField(max_length=50, blank=True)
 
 class Ammo(Weapon):
-    to = models.ForeignKey(Weapon, max_length=50, blank=True, related_name="ammunition")
+    weapons = models.ManyToManyField(Weapon, max_length=50, blank=True, null=True, related_name="ammunition")
     amount = models.IntegerField(max_length=20, blank=True, null=True)
 
 
@@ -45,6 +55,7 @@ class Person(models.Model):
     lastName = models.CharField(max_length=50, blank=True)
     country = models.CharField(max_length=50, blank=True)
     phone = models.IntegerField(max_length=20, blank=True, null= True)
+    position = models.CharField(max_length=50, blank=True, null=True)
 
     def __unicode__(self):
          return self.firstName
@@ -66,6 +77,8 @@ class Buyer (Company):
     discount = models.IntegerField(max_length = 3, blank=True, null=True)
 
 class Supplier(Company):
-    pass
+    specialization = models.CharField(max_length=30,
+                                      choices=spz,
+                                      default='Не известно', blank=True, null=True)
 
 
