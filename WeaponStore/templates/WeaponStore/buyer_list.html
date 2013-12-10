@@ -1,9 +1,22 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title></title>
-</head>
-<body>
-
-</body>
-</html>
+{% extends 'base.html' %}
+{% block content %}
+     <div class="container-fluid">
+        <div class="row-fluid">
+            <h2>Покупатели:</h2>
+            <table class="table table-striped table-hover">
+                <tbody>
+                {% for br in object_list %}
+                <tr>
+                    <td>{{ br.fullName }}</td>
+                    <td>{{ br.shortName }}</td>
+                    <td>{{ br.contact }}</td>
+                    <td><a href="{% url 'buyerItemList' br.id %}" class="btn btn-primary btn-mini">Список покупок</a>
+                        <a href="{% url 'buyer_edit' br.id %}" class="btn btn-warning btn-mini">Изменить</a>
+                        <a href="{% url 'buyer_delete' br.id %}"class="btn btn-danger btn-mini">Удалить</a></td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock content %}

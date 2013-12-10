@@ -5,6 +5,7 @@ urlpatterns = patterns('',
     url(r'^$', 'WeaponStore.views.Index', name='index'),
     url(r'^search$', 'WeaponStore.views.search', name='search'),
     url(r'^manufactureritemlist/(?P<id>\d+)$','WeaponStore.views.manufacturerItemList', name='manufacturerItemList'),
+    url(r'^buyeritemlist/(?P<id>\d+)$','WeaponStore.views.buyerItemList', name='buyerItemList'),
 
     # Weapon CRUD
     url(r'^weapon/list$', views.WeaponList.as_view(), name='weapon_list'),

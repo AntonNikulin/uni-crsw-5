@@ -19,6 +19,11 @@ def manufacturerItemList(request, id):
     weapons = manufacturer.weapon_set.all()
     return render(request, 'WeaponStore/weapon_list.html', {'object_list': weapons})
 
+def buyerItemList(request, id):
+    buyers = Buyer.objects.get(pk=id)
+    items = buyers.weapon_set.all()
+    return render(request, 'WeaponStore/weapon_list.html', {'object_list': items})
+
 
 #   Weapon CRUD
 class WeaponList(ListView):
