@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404, HttpResponseRedirect
 from django.views.generic import TemplateView, ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from .models import Weapon, Manufacturer
+from .models import Weapon, Manufacturer, Buyer
 
 
 
@@ -25,10 +25,12 @@ class WeaponList(ListView):
     model=Weapon
 
 class WeaponCreate(CreateView):
-    model=Weapon
+    model = Weapon
+    template_name = "WeaponStore/generic/generic_form.html"
 
 class WeaponUpdate(UpdateView):
     model = Weapon
+    template_name = "WeaponStore/generic/generic_form.html"
 
 class WeaponDelete(DeleteView):
     model = Weapon
@@ -39,9 +41,26 @@ class ManufacturerList(ListView):
 
 class ManufacturerCreate(CreateView):
     model = Manufacturer
+    template_name = "WeaponStore/generic/generic_form.html"
 
 class ManufacturerUpdate(UpdateView):
     model = Manufacturer
+    template_name = "WeaponStore/generic/generic_form.html"
 
 class ManufacturerDelete(DeleteView):
     model = Manufacturer
+
+#   Buyer CRUD
+class BuyerList(ListView):
+    model = Buyer
+
+class BuyerCreate(CreateView):
+    model = Buyer
+    template_name = "WeaponStore/generic/generic_form.html"
+
+class BuyerUpdate(UpdateView):
+    model = Buyer
+    template_name = "WeaponStore/generic/generic_form.html"
+
+class BuyerDelete(DeleteView):
+    model = Buyer

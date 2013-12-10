@@ -18,5 +18,11 @@ urlpatterns = patterns('',
     url(r'^manufacturer/edit/(?P<pk>\d+)$', views.ManufacturerUpdate.as_view(success_url="/manufacturer/list"), name='manufacturer_edit'),
     url(r'^manufacturer/delete/(?P<pk>\d+)$', views.ManufacturerDelete.as_view(success_url="/manufacturer/list"), name='manufacturer_delete'),
 
+    #Buyer CRUD
+    url(r'^Buyer/list$', views.BuyerList.as_view(), name='buyer_list'),
+    url(r'^Buyer/create$', views.BuyerCreate.as_view(success_url="/"), name='buyer_create'),
+    url(r'^Buyer/edit/(?P<pk>\d+)$', views.BuyerUpdate.as_view(success_url="/buyer/list"), name='buyer_edit'),
+    url(r'^Buyer/delete/(?P<pk>\d+)$', views.BuyerDelete.as_view(success_url="/buyer/list"), name='buyer_delete'),
+
 
 )
