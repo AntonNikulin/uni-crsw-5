@@ -10,7 +10,16 @@ spz = (
         (u'Боеприпасы', u'Боеприпасы'),
         (u'Ракетные комплексы', u'Ракетные комплексы'),
         (u'Оружие поддержки', u'Оружие поддержки'),
-        (u'Артилерия', u'Артиллерия')
+        (u'Артилерия', u'Артиллерия'),
+        (u'Огнемет', u'Огнемет'),
+    )
+
+clr = (
+        (u'Нереально розовый ', u'Нереально розовый '),
+        (u'Истинно зеленый ', u'Истинно зеленый '),
+        (u'Цвет брюк Джентльманна ', u'Цвет брюк Джентльманна '),
+        (u'Мускулисто-коричневый ', u'Мускулисто-коричневый '),
+        (u'Странный оттенок серого ', u'Странный оттенок серого ')
     )
 
 class Item(models.Model):
@@ -45,6 +54,9 @@ class Weapon(Item):
 
 class Misc(Item):
     type = models.CharField(max_length=50, blank=True)
+ #   color = models.CharField(max_length=30,
+   #                                   choices=clr,
+   #                                   default=u'Обычный', blank=True, null=True)
 
 class Ammo(Weapon):
     weapons = models.ManyToManyField(Weapon, max_length=50, blank=True, null=True, related_name="ammunition")
@@ -78,8 +90,8 @@ class Buyer (Company):
     discount = models.IntegerField(max_length = 3, blank=True, null=True)
 
 class Supplier(Company):
-    specialization = models.CharField(max_length=30,
+    specialization = models.CharField(max_length=40,
                                       choices=spz,
-                                      default='Не известно', blank=True, null=True)
+                                      default=u'Не известно', blank=True, null=True)
 
 
