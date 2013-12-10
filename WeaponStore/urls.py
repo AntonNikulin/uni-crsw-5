@@ -11,6 +11,7 @@ urlpatterns = patterns('',
     url(r'^weapon/list$', views.WeaponList.as_view(), name='weapon_list'),
     url(r'^weapon/create$', views.WeaponCreate.as_view(success_url="/"), name='weapon_create'),
     url(r'^weapon/edit/(?P<pk>\d+)$', views.WeaponUpdate.as_view(success_url="/weapon/list"), name='weapon_edit'),
+    url(r'^weapon/detail/(?P<pk>\d+)$', views.WeaponDetail.as_view(), name='weapon_detail'),
     url(r'^weapon/delete/(?P<pk>\d+)$', views.WeaponDelete.as_view(success_url="/weapon/list"), name='weapon_delete'),
 
     #Manufacturer CRUD
