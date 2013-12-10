@@ -30,6 +30,7 @@ urlpatterns = patterns('',
     url(r'^misc/list$', views.MiscList.as_view(), name='misc_list'),
     url(r'^misc/create$', views.MiscCreate.as_view(success_url="/"), name='misc_create'),
     url(r'^misc/edit/(?P<pk>\d+)$', views.MiscUpdate.as_view(success_url="/misc/list"), name='misc_edit'),
+    url(r'^misc/detail/(?P<pk>\d+)$', views.MiscDetail.as_view(), name='misc_detail'),
     url(r'^misc/delete/(?P<pk>\d+)$', views.MiscDelete.as_view(success_url="/misc/list"), name='misc_delete'),
 
 

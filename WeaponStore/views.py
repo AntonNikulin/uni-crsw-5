@@ -88,3 +88,6 @@ class MiscUpdate(UpdateView):
 
 class MiscDelete(DeleteView):
     model = Misc
+
+class MiscDetail(DetailView):
+    model = Misc

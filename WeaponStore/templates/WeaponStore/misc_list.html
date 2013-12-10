@@ -20,7 +20,7 @@
             <!--<td><img class="img-circle" width="40" height="40" src="{% static "media/" %}{{ wp.thumbnail }}"></td>
             -->
             <td>{{ wp.tpe }}</td>
-            <td><a href="">{{ wp.shortName }}</a></td>
+            <td><a href="{% url 'misc_detail' wp.id %}">{{ wp.shortName }}</a></td>
             <td>{{ wp.in_Stock }}</td>
             <td><a href="{{ wp.source }}">{{ wp.source | truncatechars:25 }}</a></td>
             <td>{% if wp.manufacturer.id %}<a href="{% url 'manufacturerItemList' wp.manufacturer.id %}">{{ wp.manufacturer.shortName }}</a>{% endif %}</td>
