@@ -1,6 +1,7 @@
 #Specific to project
 .idea
 *.db
+UniKurs\static\media
 
 .jpg
 .JPG
