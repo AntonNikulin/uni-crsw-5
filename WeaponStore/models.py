@@ -33,8 +33,7 @@ class Item(models.Model):
 
 
 class Weapon(Item):
-    caliber = models.IntegerField(max_length=5, blank=True, null=True)
-    addtInfo = models.CharField(max_length=200, blank=True, null=True)
+    pass
 
 
 class Misc(Item):
